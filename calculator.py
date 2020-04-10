@@ -97,9 +97,22 @@ def del_clicked():
 
 def percent_clicked():
     global dot_ct
+    global a
+    global val
+    global operator
+    val2 = val
     dot_ct = 0
 
+    if operator=='x':
+        b = float(val2.split('x')[1])
+        ans = (a * b)/100
+        val = str(ans)
+    elif operator=='/':
+        b = float(val2.split('/')[1])
+        ans = (a / b) * 100
+        val = str(ans)
 
+    data.set(val)
 def seven_clicked():
     global val
     val = val + '7'
@@ -118,10 +131,11 @@ def nine_clicked():
 def div_clicked():
     global val
     global a
+    global operator
     global dot_ct
+
+    operator = '/'
     a = float(val)
-
-
     val = val + '/'
     data.set(val)
     dot_ct = 0
@@ -220,6 +234,7 @@ def result():
     global val
     global operator
     global a
+    global b
     global dot_ct
     dot_ct =1
     val2 = val
