@@ -7,14 +7,15 @@ root = tkinter.Tk()
 root.geometry("400x500+500+100")
 root.resizable(0, 0)
 root.title("CALCULATOR")
-root.wm_attributes('-alpha', '0.8')
+root.iconbitmap('cal_images/logo.ico')
+root.wm_attributes('-alpha', '0.9')
 
 val = ''
 a = 0.0
 b = 0.0
 operator = ''
 dot_ct = 0
-
+neg_ct = 0
 
 
 def div_x_clicked():
@@ -37,14 +38,32 @@ def sq_clicked():
 
 def neg_clicked():
     global val
+    global a
     global operator
+    global neg_ct
+    global dot_ct
 
+    a = float(val)
+    if a<0:
+        a = abs(a)
+        val = str(a)
+    else:
+        neg_ct = 1
+        val = '-' + str(a)
+
+    data.set(val)
+    dot_ct = 1
 
 def sq_root_clicked():
     global val
     global a
 
+    a = float(val)
+    a = a ** (1 / 2)
+    val = str(a)
+    data.set(val)
 
+#change the button.
 def ce_clicked():
     c_clicked()
 
@@ -201,6 +220,8 @@ def result():
     global val
     global operator
     global a
+    global dot_ct
+    dot_ct =1
     val2 = val
     if operator == '+':
         b = float(val2.split('+')[1])
@@ -208,7 +229,10 @@ def result():
         data.set(ans)
         val = str(ans)
     elif operator == '-':
-        b = float(val2.split('-')[1])
+        if neg_ct==1:
+            b = float(val2.split('-')[2])
+        else:
+            b = float(val2.split('-')[1])
         ans = a - b
         data.set(ans)
         val = str(ans)
