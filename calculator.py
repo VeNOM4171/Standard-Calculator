@@ -284,7 +284,7 @@ moremenu.add_command(label='Exit', command=close_clicked)
 
 
 data = StringVar()
-lbl = Label(root, text='Label', anchor=SE, font=("Verdana", 40), textvariable=data, background='#ffffff', fg='#000000', )
+lbl = Label(root, text='Label', anchor=SE, font=("Verdana", 40), textvariable=data, background='#1D1F1E', fg='#ffffff', )
 
 lbl.pack(expand=True, fill="both", )
 
